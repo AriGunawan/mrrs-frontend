@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Reservation from '@/components/Reservation'
 import Rooms from '@/components/Rooms'
 import NewRoom from '@/components/NewRoom'
 
@@ -11,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Reservation',
+      component: Reservation
     },
     {
       path: '/rooms',

@@ -2,10 +2,34 @@ import Api from '@/services/api'
 
 export default {
   fetchRooms () {
-    return Api().get('rooms')
+    const query = {
+      query: `{
+        rooms {
+          code,
+          name,
+          description,
+          capacity,
+          floor
+        }
+      }`
+    }
+    return Api().post('graphql', query)
   },
 
   addRoom (params) {
-    return Api().post('rooms', params)
+    const query = `mutation AddRoom($room: RoomInput){
+        addRoom(room: $room) { name }
+    }`
+    return Api().post('graphql', {
+      query,
+      variables: {
+        room: {
+          name: params.name,
+          description: params.description,
+          capacity: params.capacity,
+          floor: params.floor
+        }
+      }
+    })
   }
 }

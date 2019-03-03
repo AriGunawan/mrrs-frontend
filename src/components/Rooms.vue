@@ -12,10 +12,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="room in rooms" v-bind:key="room.title">
-          <th scope="row">{{ room.title }}</th>
+        <tr v-for="room in rooms" v-bind:key="room.code">
+          <th scope="row">{{ room.name }}</th>
           <td>{{ room.description }}</td>
-          <td>{{ room.location }}</td>
+          <td>{{ room.floor }}</td>
           <td>{{ room.capacity }}</td>
         </tr>
       </tbody>
@@ -38,7 +38,7 @@ export default {
   methods: {
     async getRooms () {
       const response = await RoomService.fetchRooms()
-      this.rooms = response.data
+      this.rooms = response.data.data.rooms
     },
     goToAddNewPage () {
       this.$router.push({ name: 'NewRoom' })

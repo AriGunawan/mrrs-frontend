@@ -3,9 +3,9 @@
     <h1>Add Room</h1>
     <form>
       <div class="form-group row">
-        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="title" placeholder="Title" v-model="title">
+          <input type="text" class="form-control" id="name" placeholder="Name" v-model="name">
         </div>
       </div>
       <div class="form-group row">
@@ -15,9 +15,9 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="location" class="col-sm-2 col-form-label">location</label>
+        <label for="floor" class="col-sm-2 col-form-label">Floor</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="location" placeholder="location" v-model="location">
+          <input type="text" class="form-control" id="floor" placeholder="Floor" v-model="floor">
         </div>
       </div>
       <div class="form-group row">
@@ -41,19 +41,19 @@ export default {
   name: 'NewRoom',
   data () {
     return {
-      title: '',
+      name: '',
       description: '',
-      location: '',
+      floor: '',
       capacity: ''
     }
   },
   methods: {
     async addRoom () {
       await RoomService.addRoom({
-        title: this.title,
+        name: this.name,
         description: this.description,
-        location: this.location,
-        capacity: this.capacity
+        floor: this.floor,
+        capacity: Number(this.capacity)
       })
       this.$router.push({ name: 'Rooms' })
     }
